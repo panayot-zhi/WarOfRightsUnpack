@@ -96,7 +96,7 @@ namespace WarOfRightsUnpack.Main
                     Description = description
                 };
 
-                if (identifier.Contains("Battery"))
+                if (identifier.Contains(Constants.Battery))
                 {
                     entry.Type = "Artillery";
                 }
@@ -237,24 +237,24 @@ namespace WarOfRightsUnpack.Main
                 .Remove(",")
                 .Remove(".");
 
-            if (name.EndsWith("Battery"))
+            if (name.EndsWith(Constants.Battery))
             {
-                name = "Battery" + name.Remove("Battery");
+                name = Constants.Battery + name.Remove(Constants.Battery);
             }
 
-            if (name.EndsWith("HeavyArtillery"))
+            if (name.EndsWith(Constants.HeavyArtillery))
             {
-                name = "HeavyArtillery" + name.Remove("HeavyArtillery");
+                name = Constants.HeavyArtillery + name.Remove(Constants.HeavyArtillery);
             }
 
-            if (name.StartsWith("Legion"))
+            if (name.StartsWith(Constants.Legion))
             {
-                name = name.Remove("Legion") + "Legion";
+                name = name.Remove(Constants.Legion) + Constants.Legion;
             }
 
-            if (name.StartsWith("Sharpshooters"))
+            if (name.StartsWith(Constants.Sharpshooters))
             {
-                name = name.Remove("Sharpshooters") + "Sharpshooters";
+                name = name.Remove(Constants.Sharpshooters) + Constants.Sharpshooters;
             }
 
             return name;

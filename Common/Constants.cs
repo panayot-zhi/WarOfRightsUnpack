@@ -8,9 +8,12 @@ namespace WarOfRightsUnpack.Common
     {
         public const string Private = "Private";
 
-        public const string Battery = "Battery";
         public const string Infantry = "Infantry";
         public const string Artillery = "Artillery";
+        public const string Battery = "Battery";
+        public const string Legion = "Legion";
+        public const string Sharpshooters = "Sharpshooters";
+        public const string HeavyArtillery = "HeavyArtillery";
 
         public const string SpongeRammer = "ArtilleryToolSpongeRammer";
         public const string ShellRammer = "ArtilleryToolShellRammer";
