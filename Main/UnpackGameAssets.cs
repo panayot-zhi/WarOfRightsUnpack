@@ -41,8 +41,9 @@ namespace WarOfRightsUnpack.Main
             try
             {
                 var current = AppContext.BaseDirectory;
+                var gameDirRoot = options.GameDirectoryPath;
                 var packed = Directory.CreateDirectory("packed").FullName;
-                var assets = Path.Combine(options.GameDirectoryPath, "Assets");
+                var assets = Path.Combine(gameDirRoot, "Assets");
 
                 if (!Directory.Exists(assets))
                 {
@@ -74,6 +75,9 @@ namespace WarOfRightsUnpack.Main
                     Console.WriteLine($"Done {destination}.");
                 }
 
+                var gameLog = Path.Combine(gameDirRoot, "game.log");
+                Console.WriteLine($"Copying game.log from {gameDirRoot}...");
+                File.Copy(gameLog, Path.Combine(current, "game.log"), overwrite: true);
                 var crySDK = Path.Combine(current, "tools", "win_x64");
                 Console.WriteLine($"Copying CryGameSDK from {crySDK}...");
                 var output = Path.Combine(packed, "win_x64");
