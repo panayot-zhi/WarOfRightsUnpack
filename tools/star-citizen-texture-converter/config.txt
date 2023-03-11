@@ -19,7 +19,7 @@ clean = true
 # merge_gloss [true / false] : recombines the gloss maps into the alpha channel of the matching *.ddna normal map 
 #(for CryEngine/Lumberyard). If 'false' the ddna and gloss map will be saved as two separate files.
 
-merge_gloss = true
+merge_gloss = false
 
 # format [tif / png / tga / jpg] : the file format you want for the texture file. 
 #( note: jpg will not save any transparency information).
