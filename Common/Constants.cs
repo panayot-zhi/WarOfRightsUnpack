@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
+﻿
 // ReSharper disable StringLiteralTypo
 
 namespace WarOfRightsUnpack.Common

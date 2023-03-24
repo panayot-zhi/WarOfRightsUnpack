@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace WarOfRightsUnpack.Utility
+﻿namespace WarOfRightsUnpack.Utility
 {
     public static class FileHelper
     {

@@ -75,14 +75,17 @@ namespace WarOfRightsUnpack.Main
                     Console.WriteLine($"Done {destination}.");
                 }
 
+                // ReSharper disable InconsistentNaming
                 var gameLog = Path.Combine(gameDirRoot, "game.log");
                 Console.WriteLine($"Copying game.log from {gameDirRoot}...");
-                File.Copy(gameLog, Path.Combine(current, "game.log"), overwrite: true);
+                var gameLogDest = Path.Combine(current, "game.log");
+                File.Copy(gameLog, gameLogDest, overwrite: true);
+                Console.WriteLine($"Done {gameLogDest}...");
                 var crySDK = Path.Combine(current, "tools", "win_x64");
                 Console.WriteLine($"Copying CryGameSDK from {crySDK}...");
-                var output = Path.Combine(packed, "win_x64");
-                CopyFilesRecursively(crySDK , output);
-                Console.WriteLine($"Done {output}...");
+                var crySDKDest = Path.Combine(packed, "win_x64");
+                CopyFilesRecursively(crySDK , crySDKDest);
+                Console.WriteLine($"Done {crySDKDest}...");
 
                 var unpacked = Directory.CreateDirectory("unpacked").FullName;
                 var wolcen_extractor = Path.Combine(current, "tools", "wolcen_extractor");
@@ -97,16 +100,8 @@ namespace WarOfRightsUnpack.Main
                     process.StartInfo.FileName = Path.Combine(wolcen_extractor, "dist", "wolcen_extractor.exe");
                     process.StartInfo.WorkingDirectory = wolcen_extractor;
                     process.StartInfo.Arguments = $"extract --source \"{packed}\" --dest \"{unpacked}\"";
-                    
-                    // process.StartInfo.RedirectStandardOutput = true;
-                    // process.StartInfo.RedirectStandardError = true;
-                    
-                    // process.OutputDataReceived += ProcessOnOutputDataReceived;
-                    // process.ErrorDataReceived += ProcessOnOutputDataReceived;
                 
                     process.Start();
-                    // process.BeginOutputReadLine();
-                    // process.BeginErrorReadLine();
                     process.WaitForExit();
                 }
 
@@ -127,19 +122,20 @@ namespace WarOfRightsUnpack.Main
                 var revorb = Path.Combine(current, "tools", "revorb.exe");
                 var convert_wem_to_ogg = Path.Combine(current, "tools", "convert_wem_to_ogg.bat");
                 var startCitizenConverter = Path.Combine(current, "tools", "star-citizen-texture-converter");
+                // ReSharper restore InconsistentNaming
 
                 Console.WriteLine("Copying star-citizen-texture-converter...");
                 CopyFilesRecursively(startCitizenConverter, unpacked);
                 startCitizenConverter = Path.Combine(unpacked, "sctexconv_1.3.exe");
-                Console.WriteLine($"Unzipping ww2ogg022...");
+                Console.WriteLine("Unzipping ww2ogg022...");
                 ZipFile.ExtractToDirectory(ww2ogg022, audio, overwriteFiles: true);
-                ww2ogg022 = Path.Combine(audio, "ww2ogg.exe");
+                /*ww2ogg022 =*/ Path.Combine(audio, "ww2ogg.exe");
                 Console.WriteLine("Copying bnkextr.exe...");
                 File.Copy(bnkextr, Path.Combine(audio, "bnkextr.exe"), overwrite: true);
                 bnkextr = Path.Combine(audio, "bnkextr.exe");
                 Console.WriteLine("Copying revorb.exe...");
                 File.Copy(revorb, Path.Combine(audio, "revorb.exe"), overwrite: true);
-                revorb = Path.Combine(audio, "revorb.exe");
+                /*revorb =*/ Path.Combine(audio, "revorb.exe");
                 Console.WriteLine("Copying convert_wem_to_ogg.bat...");
                 File.Copy(convert_wem_to_ogg, Path.Combine(audio, "convert_wem_to_ogg.bat"), overwrite: true);
                 convert_wem_to_ogg = Path.Combine(audio, "convert_wem_to_ogg.bat");
@@ -260,11 +256,6 @@ namespace WarOfRightsUnpack.Main
                 Console.WriteLine(ex.StackTrace);
             }
 
-        }
-
-        private static void ProcessOnOutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            Console.WriteLine(e.Data);
         }
 
         private static void CopyFilesRecursively(string sourcePath, string targetPath)

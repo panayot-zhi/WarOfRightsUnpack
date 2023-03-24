@@ -87,23 +87,17 @@ namespace WarOfRightsUnpack.Main
                     .Groups["data"].ToString();
 
                 var identifier = NormalizeIdentifier(id);
-                var entry = new WoRRegiment()
+                var entry = new WoRRegiment
                 {
                     ID = identifier,
 
                     Name = name,
 
-                    Description = description
+                    Description = description,
+                    Type = identifier.Contains(Constants.Battery) ? 
+                        "Artillery" : 
+                        "Infantry"
                 };
-
-                if (identifier.Contains(Constants.Battery))
-                {
-                    entry.Type = "Artillery";
-                }
-                else
-                {
-                    entry.Type = "Infantry";
-                }
 
                 regiments.Add(entry);
             }
@@ -130,7 +124,7 @@ namespace WarOfRightsUnpack.Main
 
                 var jsonText = File.ReadAllText(jsonFile.FullName);
 
-                // TODO: REMOVE THIS AFTER THE DEVS FIX IT!!
+                // TODO: Remove this line when the developers fix the JSON issue
                 if (jsonFile.Name is "csa_infantry_2nd_mississippi.json" or 
                         "usa_infantry_23rd_ohio.json")
                 {

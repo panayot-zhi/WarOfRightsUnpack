@@ -1,4 +1,7 @@
-﻿namespace WarOfRightsUnpack.Models
+﻿
+// ReSharper disable UnusedMember.Global
+
+namespace WarOfRightsUnpack.Models
 {
     class WoRMapRegimentWeapon
     {

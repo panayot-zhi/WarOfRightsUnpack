@@ -47,7 +47,7 @@ namespace WarOfRightsUnpack.Main
                 Console.WriteLine("Total items: " + tipMatches.Count + Environment.NewLine);
                 foreach (Match match in tipMatches)
                 {
-                    var id = match.Groups["id"].ToString();
+                    //var id = match.Groups["id"].ToString();
                     var tip = match.Groups["data"].ToString();
 
                     Tips.Add(tip);

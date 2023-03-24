@@ -7,38 +7,9 @@ namespace WarOfRightsUnpack.Common
     {
         private readonly Pfim.IImage _image;
 
-        public byte[] Data
-        {
-            get
-            {
-                if (_image != null)
-                    return _image.Data;
-                else
-                    return new byte[0];
-            }
-        }
-
         public DDSImage(string file)
         {
             _image = Pfim.Pfimage.FromFile(file);
-            Process();
-        }
-
-        public DDSImage(Stream stream)
-        {
-            if (stream == null)
-                throw new Exception("DDSImage ctor: Stream is null");
-
-            _image = Pfim.Dds.Create(stream, new Pfim.PfimConfig());
-            Process();
-        }
-
-        public DDSImage(byte[] data)
-        {
-            if (data == null || data.Length <= 0)
-                throw new Exception("DDSImage ctor: no data");
-
-            _image = Pfim.Dds.Create(data, new Pfim.PfimConfig());
             Process();
         }
 

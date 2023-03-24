@@ -41,7 +41,7 @@ namespace WarOfRightsUnpack.Common
         {
             if (!value.HasValue)
             {
-                writer.WriteValue(value);
+                writer.WriteValue((decimal?) null);
             }
             else
             {

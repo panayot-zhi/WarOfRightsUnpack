@@ -402,7 +402,7 @@ namespace WarOfRightsUnpack.Main
             regiment = regiment.Replace(" ", "_");
             var matches = Regex.Matches(regiment, "_([a-z])");
 
-            regiment = matches.Cast<Match>()
+            regiment = matches
                 .Aggregate(regiment, (current, match) => 
                     current.Replace(match.Value, 
                         $"_{match.Groups[0].Value.ToUpper()}"));

@@ -29,9 +29,9 @@ namespace WarOfRightsUnpack.Main
             {
                 Console.WriteLine("Extracting: " + ddsFile.FullName);
 
-                var regiment = ddsFile.Directory.Name;
-                var branch = ddsFile.Directory.Parent.Name;
-                var faction = ddsFile.Directory.Parent.Parent.Name;
+                var regiment = ddsFile.Directory!.Name;
+                var branch = ddsFile.Directory.Parent!.Name;
+                var faction = ddsFile.Directory.Parent.Parent!.Name;
                 var rank = Path.GetFileNameWithoutExtension(ddsFile.FullName);
 
                 regiment = NormalizeRegimentName(regiment);
