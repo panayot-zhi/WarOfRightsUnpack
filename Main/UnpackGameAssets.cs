@@ -43,6 +43,7 @@ namespace WarOfRightsUnpack.Main
                 var current = AppContext.BaseDirectory;
                 var gameDirRoot = options.GameDirectoryPath;
                 var packed = Directory.CreateDirectory("packed").FullName;
+                var unpacked = Directory.CreateDirectory("unpacked").FullName;
                 var assets = Path.Combine(gameDirRoot, "Assets");
 
                 if (!Directory.Exists(assets))
@@ -86,8 +87,7 @@ namespace WarOfRightsUnpack.Main
                 var crySDKDest = Path.Combine(packed, "win_x64");
                 CopyFilesRecursively(crySDK , crySDKDest);
                 Console.WriteLine($"Done {crySDKDest}...");
-
-                var unpacked = Directory.CreateDirectory("unpacked").FullName;
+                
                 var wolcen_extractor = Path.Combine(current, "tools", "wolcen_extractor");
 
                 Console.WriteLine();
