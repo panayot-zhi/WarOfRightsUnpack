@@ -124,13 +124,19 @@ namespace WarOfRightsUnpack.Main
 
                 var jsonText = File.ReadAllText(jsonFile.FullName);
 
-                // TODO: Remove this line when the developers fix the JSON issue
-                if (jsonFile.Name is "csa_infantry_2nd_mississippi.json" or 
-                        "usa_infantry_23rd_ohio.json")
-                {
-                    jsonText = jsonText.Replace("\"PlayerThreshold\": 0", "\"PlayerThreshold\": 0,");
-                    jsonText = jsonText.Replace("\"PlayerThreshold\": 200", "\"PlayerThreshold\": 200,");
-                }
+                // if (jsonFile.Name is // NOTE: Last time I checked these files had issues with JSON
+                //     "csa_infantry_2nd_mississippi.json" or
+                //     "usa_infantry_23rd_ohio.json" or
+                //     "usa_infantry_36th_ohio.json")
+                // {
+                //
+                // }
+
+                // TODO: Remove this hacky fix when the developers fix their JSON issues
+                jsonText = Regex.Replace(jsonText, 
+                    pattern: "\"PlayerThreshold\": (\\d+)\r\n", 
+                    replacement: "\"PlayerThreshold\": $1,\r\n", 
+                    options: RegexOptions.Singleline);
 
                 var root = JsonConvert.DeserializeObject<EquipmentScript.Root>(jsonText);
 
